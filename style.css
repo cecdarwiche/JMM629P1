@@ -1,0 +1,318 @@
+:root {
+  --bg:        #f5f0e8;
+  --ink:       #1a1410;
+  --ink-light: #5a5046;
+  --accent:    #8b1a2f;
+  --accent2:   #c9472a;
+  --rule:      #d4c9b4;
+  --card-bg:   #fdfaf4;
+  --card-border: #c9b99a;
+ 
+  /* chart colors */
+  --c-friends:    #e05c4b;
+  --c-partner:    #5b8db8;
+  --c-parents:    #6aab7a;
+  --c-children:   #8b6abf;
+  --c-coworkers:  #e8a838;
+  --c-alone:      #999;
+ 
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+html { scroll-behavior: smooth; }
+ 
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+}
+ 
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8rem 10vw 6rem;
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+}
+ 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(139,26,47,0.04) 8px,
+    rgba(139,26,47,0.04) 9px
+  );
+  pointer-events: none;
+}
+ 
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.75rem;
+}
+ 
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  max-width: 14ch;
+}
+ 
+.hero-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+ 
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--ink-light);
+  font-weight: 300;
+  max-width: 40ch;
+  margin-bottom: 4rem;
+}
+ 
+.hero-scroll-hint {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  animation: pulse 2s ease-in-out infinite;
+}
+ 
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50%       { opacity: 1;   transform: translateY(4px); }
+}
+ 
+/* ---- MIDDLE SECTIONS ---- */
+.prose-section {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+ 
+.prose-section:first-of-type { border-top: none; }
+ 
+.prose-section .lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+ 
+.prose-section p {
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+ 
+.conclusion {
+  text-align: center;
+  padding: 6rem 2rem;
+}
+ 
+.conclusion h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+}
+ 
+.sources {
+  margin-top: 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}
+ 
+/* ---- SCROLL LAYOUT ---- */
+.scrolly-section {
+  position: relative;
+  display: flex;
+  gap: 0;
+}
+ 
+.scrolly-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-shrink: 0;
+}
+ 
+.chart-container {
+  width: 100%;
+  max-width: 540px;
+  height: 480px;
+  position: relative;
+}
+ 
+.chart-container svg {
+  width: 100%;
+  height: 100%;
+}
+ 
+.scrolly-steps {
+  width: 40%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+ 
+/* spacer at start/end so first/last step hits middle of viewport */
+.scrolly-steps::before,
+.scrolly-steps::after {
+  content: '';
+  display: block;
+  height: 50vh;
+}
+ 
+/* ---- STEP CARDS ---- */
+
+.step {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+ 
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 1.75rem;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
+  opacity: 0.35;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  width: 100%;
+}
+ 
+.step.is-active .step-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+.step-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+ 
+.step-card p {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.65;
+}
+ 
+.step-card strong { color: var(--ink); font-weight: 500; }
+ 
+/* ---- CHART SHARED ---- */
+.chart-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  fill: var(--ink);
+}
+ 
+.chart-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  fill: var(--ink-light);
+}
+ 
+.axis text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  fill: var(--ink-light);
+}
+ 
+.axis path, .axis line {
+  stroke: var(--rule);
+}
+ 
+.grid line {
+  stroke: var(--rule);
+  stroke-dasharray: 3,3;
+}
+ 
+/* ---- DUNBAR SPECIFIC ---- */
+.dunbar-ring {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+ 
+.dunbar-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  fill: var(--ink);
+}
+ 
+/* ---- LINE CHART ---- */
+.line-path {
+  fill: none;
+  stroke-width: 2.5px;
+  transition: opacity 0.5s ease, stroke-width 0.3s ease;
+}
+ 
+.line-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+}
+ 
+/* ---- BAR CHART ---- */
+.bar-rect {
+  transition: fill 0.4s ease, opacity 0.4s ease;
+}
+ 
+/* ---- RESPONSIVE ---- */
+
+@media (max-width: 768px) {
+  .scrolly-section {
+    flex-direction: column;
+  }
+  .scrolly-sticky {
+    width: 100%;
+    height: 55vh;
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background: var(--bg);
+    z-index: 10;
+  }
+  .scrolly-steps {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+  .hero { padding: 6rem 6vw 4rem; }
+}
