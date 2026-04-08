@@ -1,27 +1,27 @@
+
+ 
 :root {
-  --bg:        #f5f0e8;
-  --ink:       #1a1410;
-  --ink-light: #5a5046;
-  --accent:    #8b1a2f;
-  --accent2:   #c9472a;
-  --rule:      #d4c9b4;
-  --card-bg:   #fdfaf4;
+  --bg:          #f5f0e8;
+  --ink:         #1a1410;
+  --ink-light:   #5a5046;
+  --accent:      #8b1a2f;
+  --accent2:     #c9472a;
+  --rule:        #d4c9b4;
+  --card-bg:     #fdfaf4;
   --card-border: #c9b99a;
  
-  /* chart colors */
-  --c-friends:    #e05c4b;
-  --c-partner:    #5b8db8;
-  --c-parents:    #6aab7a;
-  --c-children:   #8b6abf;
-  --c-coworkers:  #e8a838;
-  --c-alone:      #999;
+  --c-friends:   #e05c4b;
+  --c-partner:   #5b8db8;
+  --c-parents:   #6aab7a;
+  --c-children:  #8b6abf;
+  --c-coworkers: #e8a838;
+  --c-alone:     #999;
  
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body:    'DM Sans', sans-serif;
 }
  
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
 html { scroll-behavior: smooth; }
  
 body {
@@ -32,7 +32,7 @@ body {
   line-height: 1.7;
 }
  
-/* ---- HERO ---- */
+/* ── HERO ──────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -48,20 +48,15 @@ body {
   content: '';
   position: absolute;
   top: 0; right: 0;
-  width: 40%;
-  height: 100%;
+  width: 40%; height: 100%;
   background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 8px,
-    rgba(139,26,47,0.04) 8px,
-    rgba(139,26,47,0.04) 9px
+    -45deg, transparent, transparent 8px,
+    rgba(139,26,47,0.04) 8px, rgba(139,26,47,0.04) 9px
   );
   pointer-events: none;
 }
  
 .hero-eyebrow {
-  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -82,13 +77,9 @@ body {
   max-width: 14ch;
 }
  
-.hero-title em {
-  color: var(--accent);
-  font-style: italic;
-}
+.hero-title em { color: var(--accent); font-style: italic; }
  
 .hero-sub {
-  font-family: var(--font-body);
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   color: var(--ink-light);
   font-weight: 300;
@@ -105,35 +96,38 @@ body {
  
 @keyframes pulse {
   0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50%       { opacity: 1;   transform: translateY(4px); }
+  50%       { opacity: 1;   transform: translateY(5px); }
 }
  
-/* ---- MIDDLE SECTIONS ---- */
+/* ── PROSE SECTIONS ────────────────────────────────────────── */
+/* No border-top — removed the "PowerPoint line" */
 .prose-section {
   max-width: 680px;
   margin: 0 auto;
-  padding: 5rem 2rem;
-  border-top: 1px solid var(--rule);
+  padding: 4.5rem 2rem;
 }
- 
-.prose-section:first-of-type { border-top: none; }
  
 .prose-section .lead {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
   line-height: 1.5;
   margin-bottom: 1.25rem;
   font-style: italic;
+  color: var(--ink);
 }
  
 .prose-section p {
   color: var(--ink-light);
   margin-bottom: 1rem;
+  font-size: 1rem;
 }
+ 
+.prose-section p:last-child { margin-bottom: 0; }
  
 .conclusion {
   text-align: center;
   padding: 6rem 2rem;
+  border-top: 2px solid var(--ink);
 }
  
 .conclusion h2 {
@@ -144,19 +138,20 @@ body {
  
 .sources {
   margin-top: 3rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-light);
+  padding-top: 1.2rem;
   border-top: 1px solid var(--rule);
-  padding-top: 1rem;
 }
  
-/* ---- SCROLL LAYOUT ---- */
+/* ── SCROLLY LAYOUT ────────────────────────────────────────── */
 .scrolly-section {
   position: relative;
   display: flex;
   gap: 0;
+  border-top: 1px solid var(--rule);
 }
  
 .scrolly-sticky {
@@ -167,152 +162,129 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2.5rem;
   flex-shrink: 0;
+  background: var(--bg);
 }
  
 .chart-container {
   width: 100%;
   max-width: 540px;
-  height: 480px;
-  position: relative;
 }
  
 .chart-container svg {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
 }
  
+/* ── STEP CARDS ────────────────────────────────────────────── */
 .scrolly-steps {
   width: 40%;
-  padding: 0 2rem;
+  padding: 0 2rem 0 1rem;
   display: flex;
   flex-direction: column;
+  /* Tighter: first/last spacer is shorter */
 }
  
-/* spacer at start/end so first/last step hits middle of viewport */
 .scrolly-steps::before,
 .scrolly-steps::after {
   content: '';
   display: block;
-  height: 50vh;
+  height: 35vh; /* was 50vh — this tightens the gap between cards */
 }
  
-/* ---- STEP CARDS ---- */
-
 .step {
-  min-height: 60vh;
+  /* Reduced from 60vh to bring cards closer together */
+  min-height: 42vh;
   display: flex;
   align-items: center;
+  padding: 0.5rem 0;
 }
  
 .step-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-left: 4px solid var(--accent);
-  padding: 1.5rem 1.75rem;
+  padding: 1.4rem 1.6rem;
   border-radius: 2px;
-  box-shadow: 4px 4px 0 rgba(0,0,0,0.06);
-  opacity: 0.35;
-  transform: translateY(12px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.05);
+  opacity: 0.3;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
   width: 100%;
 }
  
 .step.is-active .step-card {
   opacity: 1;
   transform: translateY(0);
+  box-shadow: 5px 5px 0 rgba(139,26,47,0.1);
 }
  
 .step-card h3 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
   color: var(--ink);
 }
  
 .step-card p {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--ink-light);
-  line-height: 1.65;
+  line-height: 1.6;
 }
  
 .step-card strong { color: var(--ink); font-weight: 500; }
  
-/* ---- CHART SHARED ---- */
-.chart-title {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  fill: var(--ink);
-}
- 
-.chart-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  fill: var(--ink-light);
-}
- 
+/* ── SHARED SVG STYLES ─────────────────────────────────────── */
 .axis text {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   fill: var(--ink-light);
 }
  
-.axis path, .axis line {
-  stroke: var(--rule);
-}
+.axis path, .axis line { stroke: var(--rule); }
  
 .grid line {
   stroke: var(--rule);
   stroke-dasharray: 3,3;
+  stroke-width: 1;
 }
  
-/* ---- DUNBAR SPECIFIC ---- */
-.dunbar-ring {
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+.grid .domain { display: none; }
  
-.dunbar-label {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  fill: var(--ink);
-}
- 
-/* ---- LINE CHART ---- */
+/* ── LINE CHART ────────────────────────────────────────────── */
 .line-path {
   fill: none;
   stroke-width: 2.5px;
-  transition: opacity 0.5s ease, stroke-width 0.3s ease;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
  
-.line-label {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-}
+/* ── BAR CHART ─────────────────────────────────────────────── */
+.bar-rect { transition: fill 0.3s; }
  
-/* ---- BAR CHART ---- */
-.bar-rect {
-  transition: fill 0.4s ease, opacity 0.4s ease;
-}
- 
-/* ---- RESPONSIVE ---- */
-
+/* ── RESPONSIVE ────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .scrolly-section {
-    flex-direction: column;
-  }
+  .scrolly-section { flex-direction: column; }
+ 
   .scrolly-sticky {
     width: 100%;
-    height: 55vh;
-    position: sticky;
-    top: 0;
+    height: 52vh;
     padding: 1rem;
-    background: var(--bg);
     z-index: 10;
   }
+ 
   .scrolly-steps {
     width: 100%;
     padding: 0 1.25rem;
   }
+ 
+  .step { min-height: 55vh; }
+ 
+  .scrolly-steps::before,
+  .scrolly-steps::after { height: 20vh; }
+ 
   .hero { padding: 6rem 6vw 4rem; }
 }
