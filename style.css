@@ -261,7 +261,7 @@ body {
 .line-body{display:grid;grid-template-columns:1fr 230px;gap:2rem;align-items:start;margin-top:1.6rem}
 .line-left{min-width:0}
 #chart-line{display:block}
-#chart-line svg{width:100%;height:auto;display:block;max-width:480px}
+#chart-line svg{width:100%;height:auto;display:block;max-width:1000px}
 
 .scrub-row{
   display:flex;align-items:center;gap:.7rem;
