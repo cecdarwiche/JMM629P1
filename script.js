@@ -14,17 +14,15 @@ const dunbarLayers = [
   { label: "Intimates",      sublabel: "3–5 people",           r: 28,  color: "#1a1410", textDark: false },
 ];
 
-const lineData = {
-  ages: [18, 20, 22, 24, 26, 28, 30, 32, 34],
-  series: [
-    { key: "friends",   label: "Friends",   color: "#e05c4b", values: [1.9, 2.0, 1.7, 1.4, 1.2, 1.0, 0.85, 0.8, 0.75] },
-    { key: "alone",     label: "Alone",     color: "#888",    values: [2.8, 2.7, 2.9, 3.1, 3.3, 3.5, 3.6, 3.8, 4.0] },
-    { key: "partner",   label: "Partner",   color: "#5b8db8", values: [0.3, 0.5, 0.8, 1.2, 1.5, 1.7, 1.9, 2.0, 2.1] },
-    { key: "parents",   label: "Parents",   color: "#6aab7a", values: [1.4, 1.2, 1.0, 0.9, 0.7, 0.6, 0.5, 0.5, 0.4] },
-    { key: "children",  label: "Children",  color: "#8b6abf", values: [0.0, 0.0, 0.1, 0.2, 0.4, 0.6, 0.9, 1.1, 1.3] },
-    { key: "coworkers", label: "Coworkers", color: "#e8a838", values: [0.4, 0.5, 0.6, 0.7, 0.8, 0.8, 0.7, 0.7, 0.6] },
-  ]
-};
+const LINE_AGES = [18,20,22,24,26,28,30,32,34];
+const LINE_SERIES = [
+  {key:"friends",  label:"Friends",  color:"#e05c4b", vals:[1.9,2.0,1.7,1.4,1.2,1.0,0.85,0.8,0.75]},
+  {key:"alone",   label:"Alone",    color:"#999",    vals:[2.8,2.7,2.9,3.1,3.3,3.5,3.6,3.8,4.0]},
+  {key:"partner", label:"Partner",  color:"#5b8db8", vals:[0.3,0.5,0.8,1.2,1.5,1.7,1.9,2.0,2.1]},
+  {key:"parents", label:"Parents",  color:"#6aab7a", vals:[1.4,1.2,1.0,0.9,0.7,0.6,0.5,0.5,0.4]},
+  {key:"children",label:"Children", color:"#8b6abf", vals:[0.0,0.0,0.1,0.2,0.4,0.6,0.9,1.1,1.3]},
+  {key:"cowork",  label:"Coworkers",color:"#e8a838", vals:[0.4,0.5,0.6,0.7,0.8,0.8,0.7,0.7,0.6]},
+];
 
 const barData = [
   { label: "0 friends",  pct: 8  },
@@ -150,97 +148,146 @@ function drawDunbar(stepIndex) {
 
 // ── CHART 2: LINE CHART ───────────────────────────────────────
 
-let lineInit = false;
-let _lineXSc, _lineYSc;
+// CHART 2 — LINE + SCRUBBER
+// ════════════════════════════════════════════════
+(function(){
+  // Fixed viewBox — no DOM measurement needed
+  const VW=480, VH=260;
+  const m={top:18,right:72,bottom:38,left:40};
+  const iw=VW-m.left-m.right; // 368
+  const ih=VH-m.top-m.bottom; // 204
 
-function drawLineChart(stepIndex) {
-  const el = document.getElementById("chart-line");
-  if (!el) return;
+  const xSc = d3.scaleLinear().domain([18,34]).range([0,iw]);
+  const ySc = d3.scaleLinear().domain([0,5]).range([ih,0]).nice();
 
-  if (!lineInit) {
-    lineInit = true;
-    const W = getW(el);
-    const H = Math.round(W * 0.66);
-    const m = { top: 44, right: 78, bottom: 46, left: 42 };
-    const w = W - m.left - m.right;
-    const h = H - m.top - m.bottom;
+  const svg = d3.select("#chart-line").append("svg")
+    .attr("viewBox",`0 0 ${VW} ${VH}`)
+    .attr("preserveAspectRatio","xMidYMid meet");
 
-    const svg = d3.select(el).append("svg")
-      .attr("viewBox", `0 0 ${W} ${H}`)
-      .attr("preserveAspectRatio", "xMidYMid meet");
+  const g = svg.append("g").attr("transform",`translate(${m.left},${m.top})`);
 
-    addChartTitle(svg, m.left, 22, "Avg. Daily Hours with Others (Ages 18–34)");
+  // Grid lines
+  g.append("g").attr("class","grid")
+    .call(d3.axisLeft(ySc).tickSize(-iw).tickFormat(""))
+    .call(a=>a.select(".domain").remove());
 
-    const g = svg.append("g").attr("transform", `translate(${m.left},${m.top})`);
+  // Axes
+  g.append("g").attr("class","axis").attr("transform",`translate(0,${ih})`)
+    .call(d3.axisBottom(xSc).ticks(8).tickFormat(d=>""+d));
+  g.append("g").attr("class","axis")
+    .call(d3.axisLeft(ySc).ticks(5));
 
-    _lineXSc = d3.scaleLinear().domain([18, 34]).range([0, w]);
-    _lineYSc = d3.scaleLinear().domain([0, 5]).range([h, 0]).nice();
+  // Axis labels
+  g.append("text").attr("x",iw/2).attr("y",ih+32)
+    .attr("text-anchor","middle").attr("font-family","DM Sans,sans-serif")
+    .attr("font-size","10px").attr("fill","#5a5046").text("Age");
+  g.append("text").attr("transform","rotate(-90)").attr("x",-ih/2).attr("y",-28)
+    .attr("text-anchor","middle").attr("font-family","DM Sans,sans-serif")
+    .attr("font-size","10px").attr("fill","#5a5046").text("Hrs / day");
 
-    // Grid
-    g.append("g").attr("class", "grid")
-      .call(d3.axisLeft(_lineYSc).tickSize(-w).tickFormat(""))
-      .call(ax => { ax.select(".domain").remove(); });
+  // Clip path starting at width=0
+  const clipRect = svg.append("defs").append("clipPath").attr("id","lc")
+    .append("rect").attr("x",0).attr("y",-m.top).attr("width",0).attr("height",VH+10);
 
-    // Axes
-    g.append("g").attr("class", "axis").attr("transform", `translate(0,${h})`)
-      .call(d3.axisBottom(_lineXSc).ticks(8).tickFormat(d => "" + d));
-    g.append("g").attr("class", "axis")
-      .call(d3.axisLeft(_lineYSc).ticks(5));
+  // Separate end-label Y positions to avoid overlap
+  const sorted = [...LINE_SERIES].sort((a,b)=>b.vals[b.vals.length-1]-a.vals[a.vals.length-1]);
+  const lbY={};
+  sorted.forEach((s,i)=>{
+    const raw = m.top + ySc(s.vals[s.vals.length-1]);
+    const prev = i>0 ? lbY[sorted[i-1].key] : -Infinity;
+    lbY[s.key] = Math.max(raw, prev+12);
+  });
 
-    // Axis labels
-    g.append("text").attr("x", w / 2).attr("y", h + 38)
-      .attr("text-anchor", "middle").attr("font-family", "DM Sans, sans-serif")
-      .attr("font-size", "11px").attr("fill", "#5a5046").text("Age");
-    g.append("text").attr("transform", "rotate(-90)").attr("x", -h / 2).attr("y", -32)
-      .attr("text-anchor", "middle").attr("font-family", "DM Sans, sans-serif")
-      .attr("font-size", "11px").attr("fill", "#5a5046").text("Hours / day");
+  const lineGen = d3.line()
+    .x((_,i)=>xSc(LINE_AGES[i])).y(d=>ySc(d))
+    .curve(d3.curveCatmullRom.alpha(0.5));
 
-    // Clip path for draw animation
-    const defs = svg.append("defs");
-    defs.append("clipPath").attr("id", "line-clip")
-      .append("rect").attr("x", 0).attr("y", -10).attr("width", 0).attr("height", H + 20)
-      .transition().duration(1400).ease(d3.easeQuadInOut).attr("width", W + 100);
+  LINE_SERIES.forEach(s=>{
+    g.append("path").datum(s.vals)
+      .attr("fill","none").attr("stroke",s.color)
+      .attr("stroke-width",s.key==="friends"?2.8:1.7)
+      .attr("stroke-linejoin","round").attr("stroke-linecap","round")
+      .attr("d",lineGen).attr("clip-path","url(#lc)");
+    // End labels — positioned in SVG coordinates (relative to g), draw outside clip
+    svg.append("text")
+      .attr("x",m.left+iw+5).attr("y",lbY[s.key]+3)
+      .attr("fill",s.color)
+      .attr("font-size",s.key==="friends"?"10px":"9px")
+      .attr("font-family","DM Sans,sans-serif")
+      .attr("font-weight",s.key==="friends"?"600":"400")
+      .attr("clip-path","url(#lc)")
+      .text(s.label);
+  });
 
-    const lineGen = d3.line()
-      .x((d, i) => _lineXSc(lineData.ages[i]))
-      .y(d => _lineYSc(d))
-      .curve(d3.curveCatmullRom.alpha(0.5));
+  // Cursor group
+  const cur = g.append("g").attr("class","cur").style("visibility","hidden");
+  cur.append("line").attr("class","cur-rule")
+    .attr("y1",0).attr("y2",ih)
+    .attr("stroke","rgba(26,20,16,.35)").attr("stroke-width",1)
+    .attr("stroke-dasharray","4,3");
+  const cdots={};
+  LINE_SERIES.forEach(s=>{
+    cdots[s.key]=cur.append("circle")
+      .attr("r",s.key==="friends"?5:3.5)
+      .attr("fill",s.color).attr("stroke","#f5f0e8").attr("stroke-width",1.5);
+  });
 
-    lineData.series.forEach(s => {
-      g.append("path")
-        .datum(s.values)
-        .attr("class", `line-path line-${s.key}`)
-        .attr("d", lineGen)
-        .attr("stroke", s.color)
-        .attr("clip-path", "url(#line-clip)");
-
-      const lastY = _lineYSc(s.values[s.values.length - 1]);
-      g.append("text")
-        .attr("class", `line-label-${s.key}`)
-        .attr("x", w + 5).attr("y", lastY + 4)
-        .attr("fill", s.color)
-        .attr("font-size", "10px")
-        .attr("font-family", "DM Sans, sans-serif")
-        .text(s.label);
-    });
+  // Interpolation
+  function interp(vals,age){
+    if(age<=LINE_AGES[0]) return vals[0];
+    if(age>=LINE_AGES[LINE_AGES.length-1]) return vals[vals.length-1];
+    const i=LINE_AGES.findIndex(a=>a>age);
+    const t=(age-LINE_AGES[i-1])/(LINE_AGES[i]-LINE_AGES[i-1]);
+    return vals[i-1]+t*(vals[i]-vals[i-1]);
   }
 
-  // Highlight logic per step
-  const highlights = { 0: null, 1: ["friends"], 2: ["partner", "children"], 3: ["alone"] };
-  const active = highlights[stepIndex] ?? null;
-
-  lineData.series.forEach(s => {
-    const hi = !active || active.includes(s.key);
-    d3.select(`.line-${s.key}`)
-      .transition().duration(380)
-      .attr("stroke-width", !active ? 2.5 : (hi ? 3.8 : 1.2))
-      .attr("opacity",       !active ? 0.85 : (hi ? 1 : 0.1));
-    d3.select(`.line-label-${s.key}`)
-      .transition().duration(380)
-      .attr("opacity",     !active ? 1 : (hi ? 1 : 0.15))
-      .attr("font-weight", hi ? "700" : "300");
+  // Build sidebar value table
+  const vtEl = document.getElementById("val-table");
+  LINE_SERIES.forEach(s=>{
+    const row=document.createElement("div");
+    row.className="val-row";
+    row.innerHTML=`<span class="val-dot" style="background:${s.color}"></span>
+      <span class="val-label">${s.label}</span>
+      <span class="val-num" id="vn-${s.key}">–</span>`;
+    vtEl.appendChild(row);
   });
-}
+
+  function moveCursor(age){
+    cur.style("visibility","visible");
+    const x=xSc(age);
+    cur.select(".cur-rule").attr("x1",x).attr("x2",x);
+    LINE_SERIES.forEach(s=>{
+      const v=interp(s.vals,age);
+      cdots[s.key].attr("cx",x).attr("cy",ySc(v));
+      const el=document.getElementById("vn-"+s.key);
+      if(el) el.textContent=v.toFixed(1)+"h";
+    });
+    document.getElementById("ins-age").textContent=age;
+    const av=document.getElementById("age-val");
+    if(av) av.textContent=age;
+    const itEl=document.getElementById("ins-txt");
+    if(itEl) itEl.innerHTML=INSIGHTS[age]||INSIGHTS[18];
+  }
+
+  // Wire scrubber IMMEDIATELY — no need for IntersectionObserver
+  const slider=document.getElementById("age-slider");
+  const ageVal=document.getElementById("age-val");
+  slider.addEventListener("input",function(){
+    moveCursor(+this.value);
+  });
+
+  // IntersectionObserver triggers clip animation (draw lines in)
+  let drawn=false;
+  new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!drawn){
+      drawn=true;
+      clipRect.transition().duration(1400).ease(d3.easeQuadInOut)
+        .attr("width",iw+m.right+20);
+      setTimeout(()=>moveCursor(18),300);
+    }
+  },{threshold:0.3}).observe(document.getElementById("chart-line"));
+})();
+
 
 // ── CHART 3: BAR CHART ────────────────────────────────────────
 
@@ -596,7 +643,6 @@ function initScrollama(sectionId, chartFn) {
 document.addEventListener("DOMContentLoaded", () => {
   // Initial draw at step 0
   drawDunbar(0);
-  drawLineChart(0);
   drawBarChart(0);
   drawImportance(0);
   drawHappiness(0);
@@ -610,7 +656,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Wire scrollama instances
   initScrollama("scrolly-dunbar",    drawDunbar);
-  initScrollama("scrolly-line",      drawLineChart);
   initScrollama("scrolly-bar",       drawBarChart);
   initScrollama("scrolly-importance", drawImportance);
   initScrollama("scrolly-happiness", drawHappiness);

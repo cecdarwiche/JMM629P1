@@ -76,49 +76,36 @@
     <p>But here's what the data also reveals: as we get older, even those precious few connections get harder to maintain.</p>
   </section>
 
-  <!-- ═══════════════════ SCROLLY 2: LINE CHART ════════════════════════ -->
-  <section class="scrolly-section" id="scrolly-line">
-    <div class="scrolly-sticky">
-      <div class="chart-container" id="chart-line"></div>
+  <!-- ═══ CHART 2: LINE + SCRUBBER ════════════ -->
+<section class="line-section" id="section-line">
+  <span class="sec-ey">Time &amp; Social Life</span>
+  <h2 class="sec-h">How We Spend Our Time</h2>
+  <p class="sec-sub">Average daily hours with different people, ages 18–34. <strong>Drag the slider</strong> to explore any age.</p>
+
+  <div class="line-body">
+    <div class="line-left">
+      <div id="chart-line"></div>
+      <div class="scrub-row">
+        <label for="age-slider">Age</label>
+        <input type="range" id="age-slider" min="18" max="34" step="1" value="18"/>
+        <span class="scrub-age" id="age-val">18</span>
+      </div>
     </div>
-    <div class="scrolly-steps">
-
-      <div class="step" data-step="line-0">
-        <div class="step-card">
-          <h3>How We Spend Our Time</h3>
-          <p>Looking at daily hours spent with different people from ages 18 to 34, a clear pattern emerges. At first, friends dominate our social lives.</p>
-        </div>
+    <div class="line-right">
+      <div class="insight-card">
+        <span class="insight-age-lbl">At age</span>
+        <div class="insight-age-num" id="ins-age">18</div>
+        <p class="insight-txt" id="ins-txt">At <strong>18</strong>, friends fill nearly 2 hours daily. Alone time already leads — it only grows from here.</p>
       </div>
-
-      <div class="step" data-step="line-1">
-        <div class="step-card">
-          <h3>The Friend Drop</h3>
-          <p>Time spent with <strong style="color:#e05c4b">friends</strong> peaks in our early 20s — then falls sharply as we enter the workforce and take on new responsibilities.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="line-2">
-        <div class="step-card">
-          <h3>Partners &amp; Family Rise</h3>
-          <p>Time with a <strong style="color:#5b8db8">partner</strong>, <strong style="color:#8b6abf">children</strong>, and <strong style="color:#e8a838">coworkers</strong> steadily increases — replacing the space once held by friendships.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="line-3">
-        <div class="step-card">
-          <h3>Alone Time Rises Too</h3>
-          <p>Time spent <strong style="color:#888">alone</strong> quietly grows throughout our 20s and into our 30s — a signal of growing social isolation even as life appears fuller.</p>
-        </div>
-      </div>
-
+      <div class="val-table" id="val-table"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════ PROSE BRIDGE ══════════════════════════════ -->
-  <section class="prose-section">
-    <p class="lead">This decline isn't just about busier calendars — it reflects a broader social shift.</p>
-    <p>As our communication becomes more digital and less face-to-face, physical interactions with friends start to feel optional rather than essential. But how many close friends do Americans actually report having?</p>
-  </section>
+<section class="prose">
+  <p class="lead">This decline isn't just about busier calendars — it reflects a broader social shift.</p>
+  <p>As communication becomes more digital and less face-to-face, time with friends starts to feel optional rather than essential. But how many close friends do Americans actually report having?</p>
+</section>
 
   <!-- ═══════════════════ SCROLLY 3: BAR CHART ═════════════════════════ -->
   <section class="scrolly-section" id="scrolly-bar">

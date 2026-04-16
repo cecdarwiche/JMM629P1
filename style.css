@@ -100,7 +100,6 @@ body {
 }
  
 /* ── PROSE SECTIONS ────────────────────────────────────────── */
-/* No border-top — removed the "PowerPoint line" */
 .prose-section {
   max-width: 680px;
   margin: 0 auto;
@@ -111,14 +110,12 @@ body {
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.5vw, 1.5rem);
   line-height: 1.5;
-  margin-bottom: 1.25rem;
   font-style: italic;
   color: var(--ink);
 }
  
 .prose-section p {
-  color: var(--ink-light);
-  margin-bottom: 1rem;
+  color: var(--ink-light); 
   font-size: 1rem;
 }
  
@@ -185,19 +182,17 @@ body {
   padding: 0 2rem 0 1rem;
   display: flex;
   flex-direction: column;
-  /* Tighter: first/last spacer is shorter */
 }
  
 .scrolly-steps::before,
 .scrolly-steps::after {
   content: '';
   display: block;
-  height: 35vh; /* was 50vh — this tightens the gap between cards */
+  height: 35vh; 
 }
  
 .step {
-  /* Reduced from 60vh to bring cards closer together */
-  min-height: 42vh;
+  min-height: 30vh;
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
@@ -261,6 +256,60 @@ body {
   stroke-linejoin: round;
   stroke-linecap: round;
 }
+
+.line-section{border-top:1px solid var(--rule);padding:3.5rem 1.5rem;max-width:900px;margin:0 auto}
+.line-body{display:grid;grid-template-columns:1fr 230px;gap:2rem;align-items:start;margin-top:1.6rem}
+.line-left{min-width:0}
+#chart-line{display:block}
+#chart-line svg{width:100%;height:auto;display:block;max-width:480px}
+
+.scrub-row{
+  display:flex;align-items:center;gap:.7rem;
+  margin-top:.8rem;max-width:480px;
+}
+.scrub-row label{
+  font-size:.68rem;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dim);white-space:nowrap;
+}
+input[type=range]{
+  flex:1;-webkit-appearance:none;height:3px;
+  background:var(--rule);border-radius:2px;outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--red);border:2px solid var(--bg);
+  box-shadow:0 0 0 2px var(--red);transition:box-shadow .15s;cursor:pointer;
+}
+input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(139,26,47,.2)}
+input[type=range]::-moz-range-thumb{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--red);border:2px solid var(--bg);cursor:pointer;
+}
+.scrub-age{
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  color:var(--red);min-width:2.2ch;text-align:right;
+}
+
+.insight-card{
+  background:var(--card);border:1px solid var(--brd);
+  border-left:4px solid var(--red);
+  padding:1rem 1.1rem;border-radius:2px;
+  box-shadow:3px 3px 0 rgba(0,0,0,.04);margin-bottom:1.2rem;
+}
+.insight-age-lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim)}
+.insight-age-num{
+  font-family:var(--serif);font-size:2.2rem;font-weight:700;
+  color:var(--red);line-height:1;margin-bottom:.5rem;
+}
+.insight-txt{font-size:.82rem;color:var(--dim);line-height:1.6}
+.insight-txt strong{color:var(--ink)}
+
+.val-table{display:flex;flex-direction:column;gap:.2rem}
+.val-row{display:flex;align-items:center;gap:.5rem;padding:.18rem 0;font-size:.8rem}
+.val-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.val-label{flex:1;color:var(--dim)}
+.val-num{font-weight:600;color:var(--ink);min-width:3ch;text-align:right;font-size:.85rem}
+
  
 /* ── BAR CHART ─────────────────────────────────────────────── */
 .bar-rect { transition: fill 0.3s; }
