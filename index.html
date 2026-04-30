@@ -1,87 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Friendship Decline</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>The Friendship Decline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
-  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-  <section class="hero">
-    <div class="hero-eyebrow">By Cecile Darwiche</div>
-    <h1 class="hero-title">The Friendship<br /><em>Decline</em></h1>
-    <p class="hero-sub">Why staying connected matters more than ever</p>
-    <div class="hero-scroll-hint">scroll to explore ↓</div>
-  </section>
-
-  <!-- ═══════════════════════════════ INTRO ══════════════════════════════ -->
-  <section class="prose-section">
-    <p class="lead">Friendship is one of the most essential human experiences. It shapes our sense of belonging, supports our emotional health, and brings meaning to our daily lives.</p>
-    <p>Yet in today's world — where schedules are packed, communication is often digital, and responsibilities pile up — the time we spend with friends is quietly shrinking. The data tells a clear story: genuine in-person contact is one of the strongest predictors of happiness, emotional resilience, and even longevity.</p>
-  </section>
-
-  <!-- ═══════════════════ SCROLLY 1: DUNBAR CIRCLES ════════════════════ -->
-  <section class="scrolly-section" id="scrolly-dunbar">
-    <div class="scrolly-sticky">
-      <div class="chart-container" id="chart-dunbar"></div>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Graphic Detail · The Economist · Nov 2025</div>
+  <h1 class="hero-title">The Friendship<br><em>Decline</em></h1>
+  <p class="hero-sub">Why staying connected matters more than ever</p>
+  <div class="scroll-hint">scroll to explore ↓</div>
+</section>
+ 
+<!-- INTRO -->
+<section class="prose">
+  <p class="lead">Friendship is one of the most essential human experiences — shaping our sense of belonging, emotional health, and the meaning we find in everyday life.</p>
+  <p>Yet in today's world, where schedules are packed and communication is often digital, the time we spend with friends is quietly shrinking. Genuine in-person contact is one of the strongest predictors of happiness, resilience, and longevity.</p>
+</section>
+ 
+<!-- ═══ CHART 1: DUNBAR — SCROLLAMA ════════ -->
+<section class="scrolly" id="scrolly-dunbar">
+  <div class="sticky">
+    <div class="dunbar-wrap" id="chart-dunbar"></div>
+  </div>
+  <div class="steps">
+    <div class="step" data-i="0">
+      <div class="card">
+        <h3>Circles of Connection</h3>
+        <p>Anthropologist Robin Dunbar found our relationships naturally fall into distinct layers, each shaped by the limits of our emotional capacity and attention.</p>
+      </div>
     </div>
-    <div class="scrolly-steps">
-
-      <div class="step" data-step="dunbar-0">
-        <div class="step-card">
-          <h3>Circles of Connection</h3>
-          <p>Anthropologist Robin Dunbar discovered our relationships naturally fall into distinct layers — each one shaped by the limits of our emotional capacity, time, and attention.</p>
-        </div>
+    <div class="step" data-i="1">
+      <div class="card">
+        <h3>Your Inner Circle</h3>
+        <p><strong>Intimates (3–5 people)</strong> — your innermost ring. Usually a romantic partner or closest family. The people you'd call in a crisis.</p>
       </div>
-
-      <div class="step" data-step="dunbar-1">
-        <div class="step-card">
-          <h3>Your Inner Circle</h3>
-          <p><strong>Intimates (3–5 people)</strong> are your innermost ring — usually a romantic partner or closest family. These are the people you'd turn to in a crisis.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="dunbar-2">
-        <div class="step-card">
-          <h3>Best Friends</h3>
-          <p><strong>Best Friends (~15 people)</strong> form your core support group. 5 out of 15 of your best friends make part of your core support group.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="dunbar-3">
-        <div class="step-card">
-          <h3>Friends &amp; Active Network</h3>
-          <p><strong>Friends (~50)</strong> and your <strong>full active network (~150)</strong> are people you maintain genuine relationships with — though with less intensity.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="dunbar-4">
-        <div class="step-card">
-          <h3>The Outer Edge</h3>
-          <p>Humans can cognitively manage up to <strong>500 acquaintances</strong> — faces and names we recognize but rarely invest in deeply. Only <strong>38% of people</strong> meet Dunbar's standard of 5 close friends.</p>
-        </div>
-      </div>
-
     </div>
-  </section>
-
-  <!-- ══════════════════════ PROSE BRIDGE ══════════════════════════════ -->
-  <section class="prose-section">
-    <p class="lead">Even as we desire large social networks, the deepest connections we maintain remain few — and incredibly precious.</p>
-    <p>But here's what the data also reveals: as we get older, even those precious few connections get harder to maintain.</p>
-  </section>
-
-  <!-- ═══ CHART 2: LINE + SCRUBBER ════════════ -->
+    <div class="step" data-i="2">
+      <div class="card">
+        <h3>Best Friends</h3>
+        <p><strong>Best Friends (~15)</strong> form your core support group. Five of these make up your true inner support network.</p>
+      </div>
+    </div>
+    <div class="step" data-i="3">
+      <div class="card">
+        <h3>Friends &amp; Active Network</h3>
+        <p><strong>Friends (~50)</strong> and your <strong>active network (~150)</strong> — people you maintain genuine relationships with, though with less intensity.</p>
+      </div>
+    </div>
+    <div class="step" data-i="4">
+      <div class="card">
+        <h3>The Outer Edge</h3>
+        <p>Humans can cognitively manage up to <strong>500 acquaintances</strong>. Yet only <strong>38% of people</strong> meet Dunbar's standard of 5 close friends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="prose">
+  <p class="lead">Even as we desire large social networks, the deepest connections we maintain remain few — and incredibly precious.</p>
+  <p>But here's what the data reveals: as we age, even those precious few connections get harder to maintain.</p>
+</section>
+ 
+<!-- ═══ CHART 2: LINE + SCRUBBER ════════════ -->
 <section class="line-section" id="section-line">
   <span class="sec-ey">Time &amp; Social Life</span>
   <h2 class="sec-h">How We Spend Our Time</h2>
   <p class="sec-sub">Average daily hours with different people, ages 18–34. <strong>Drag the slider</strong> to explore any age.</p>
-
+ 
   <div class="line-body">
     <div class="line-left">
       <div id="chart-line"></div>
@@ -101,149 +94,63 @@
     </div>
   </div>
 </section>
-
-<section class="prose-section">
+ 
+<section class="prose">
   <p class="lead">This decline isn't just about busier calendars — it reflects a broader social shift.</p>
   <p>As communication becomes more digital and less face-to-face, time with friends starts to feel optional rather than essential. But how many close friends do Americans actually report having?</p>
 </section>
-
-  <!-- ═══════════════════ SCROLLY 3: BAR CHART ═════════════════════════ -->
-  <section class="scrolly-section" id="scrolly-bar">
-    <div class="scrolly-sticky">
-      <div class="chart-container" id="chart-bar"></div>
-    </div>
-    <div class="scrolly-steps">
-
-      <div class="step" data-step="bar-0">
-        <div class="step-card">
-          <h3>Counting Close Friends</h3>
-          <p>When Americans are asked how many close friends they have, the results are striking. Let's look at each group.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="bar-1">
-        <div class="step-card">
-          <h3>The Lonely 15%</h3>
-          <p><strong>8%</strong> of Americans have <em>zero</em> close friends. Another <strong>7%</strong> have just one. Nearly 1 in 6 Americans navigate life with almost no close social bonds.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="bar-2">
-        <div class="step-card">
-          <h3>The Middle Ground</h3>
-          <p><strong>14%</strong> have two close friends and <strong>18%</strong> have three — the largest single group. For many, a handful of trusted people is the reality of adult friendship.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="bar-3">
-        <div class="step-card">
-          <h3>Meeting Dunbar's Standard</h3>
-          <p>Only <strong>38% of Americans</strong> have 5 or more close friends — meeting Dunbar's threshold for a healthy core support group. The majority fall short.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════ PROSE BRIDGE ══════════════════════════════ -->
-  <section class="prose-section">
-    <p class="lead">Despite knowing this, most Americans still say friendship is one of the most important things in their lives.</p>
-    <p>The gap between how much we value friendship and how much time we actually invest in it reveals a tension at the heart of modern social life.</p>
-  </section>
-
-  <!-- ═══════════════════ SCROLLY 4: IMPORTANCE WAFFLE ═════════════════ -->
-  <section class="scrolly-section" id="scrolly-importance">
-    <div class="scrolly-sticky">
-      <div class="chart-container" id="chart-importance"></div>
-    </div>
-    <div class="scrolly-steps">
-
-      <div class="step" data-step="imp-0">
-        <div class="step-card">
-          <h3>Friendship Is Highly Valued</h3>
-          <p>Despite shrinking time together, Americans overwhelmingly say friendship is central to their emotional lives. Let's see how they rate its importance.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="imp-1">
-        <div class="step-card">
-          <h3>Very Important</h3>
-          <p>The largest group — <strong>around half of Americans</strong> — say friendship is <strong>very important</strong> to them. It sits at the core of their sense of identity and belonging.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="imp-2">
-        <div class="step-card">
-          <h3>Rather Important</h3>
-          <p>Another large share say friendship is <strong>rather important</strong>. Together, these two groups make up the vast majority of Americans who deeply value their social bonds.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="imp-3">
-        <div class="step-card">
-          <h3>A Small Minority Disagree</h3>
-          <p>Only a small fraction say friendship is <strong>not very</strong> or <strong>not at all</strong> important. The data is clear: Americans cherish friendship — even when life makes it hard to nurture.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════ PROSE BRIDGE ══════════════════════════════ -->
-  <section class="prose-section">
-    <p class="lead">So if we value friendship so much — why do so many of us struggle to maintain it?</p>
-    <p>Research points to three consistent barriers that prevent Americans from forming and keeping close friendships.</p>
-  </section>
-
-  <!-- ═══════════════════ SCROLLY 5: HAPPINESS DOT PLOT ════════════════ -->
-  <section class="scrolly-section" id="scrolly-happiness">
-    <div class="scrolly-sticky">
-      <div class="chart-container" id="chart-happiness"></div>
-    </div>
-    <div class="scrolly-steps">
-
-      <div class="step" data-step="hap-0">
-        <div class="step-card">
-          <h3>Friendship &amp; Happiness, Globally</h3>
-          <p>Across many countries, researchers tracked happiness levels for people who often spend time with friends versus those who rarely do. The pattern is remarkably consistent.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="hap-1">
-        <div class="step-card">
-          <h3>The Happiness Gap</h3>
-          <p>In almost every country studied, people who <strong>often spend time with friends</strong> report higher happiness than those who rarely do. The gap can be as large as <strong>15 percentage points</strong> — as seen in Spain.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="hap-2">
-        <div class="step-card">
-          <h3>The Outliers</h3>
-          <p><strong>Moldova</strong> has the lowest happiness at just 39%. <strong>Iran</strong> is the country with the least difference between groups — 0%. Meanwhile, <strong>Canada &amp; Singapore</strong> top the chart at 96% happiness among those who socialize often.</p>
-        </div>
-      </div>
-
-      <div class="step" data-step="hap-3">
-        <div class="step-card">
-          <h3>Where Does the US Stand?</h3>
-          <p>The <strong>United States</strong> sits in the upper range — but still shows a measurable gap between frequent and infrequent socializers, reinforcing that spending time with friends is a genuine happiness driver.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════ CONCLUSION ════════════════════════════════ -->
-  <section class="prose-section conclusion">
-    <h2>Connection Is a Choice</h2>
-    <p class="lead">Friendships are among the strongest predictors of happiness, yet many of us spend less time nurturing them as adult responsibilities grow.</p>
-    <p>Social scientists have found that frequent, positive interactions with friends stimulate the release of dopamine and oxytocin — the brain's "feel-good" chemicals. Over time, this contributes to greater psychological health and even improved physical health outcomes.</p>
-    <p>The data is clear: people who make space for meaningful social time are consistently happier. Reclaiming even small moments of shared time can strengthen these bonds — and remind us how essential real connection is to our well-being.</p>
-    <div class="sources">Sources: Kaggle · Our World In Data · Pew Research</div>
-  </section>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
-  <script src="script.js"></script>
+ 
+<!-- ═══ CHART 3: BAR — CLICK ════════════════ -->
+<section class="bar-section" id="section-bar">
+  <span class="sec-ey">Social Inventory</span>
+  <h2 class="sec-h">How Many Close Friends Do Americans Have?</h2>
+  <p class="bar-hint">Click any bar to learn more ↓</p>
+  <div id="chart-bar"></div>
+  <div class="bar-callout" id="bar-callout"></div>
+</section>
+ 
+<section class="prose">
+  <p class="lead">Despite this, most Americans say friendship is one of the most important things in their lives.</p>
+  <p>The gap between how much we value friendship and how little time we invest in it reveals a tension at the heart of modern social life.</p>
+</section>
+ 
+<!-- ═══ CHART 4: WAFFLE — CASCADE ═══════════ -->
+<section class="waffle-section" id="section-waffle">
+  <span class="sec-ey">Values Survey</span>
+  <h2 class="sec-h">Friendship Is Highly Valued</h2>
+  <p class="sec-sub">Each square = 1 in 100 Americans, surveyed on how important friendship is to them.</p>
+  <div class="waffle-body">
+    <div id="chart-importance"></div>
+    <div class="wleg" id="waffle-legend"></div>
+  </div>
+</section>
+ 
+<section class="prose">
+  <p class="lead">So if we value friendship so much — why do so many struggle to maintain it?</p>
+  <p>Research points to three barriers: lack of trust, lack of time, and introversion. The cost shows clearly in global happiness data.</p>
+</section>
+ 
+<!-- ═══ CHART 5: HAPPINESS — HOVER ══════════ -->
+<section class="hap-section" id="section-hap">
+  <span class="sec-ey">Global Comparison</span>
+  <h2 class="sec-h">Friendship &amp; Happiness, Globally</h2>
+  <p class="sec-sub">In almost every country studied, people who often spend time with friends report significantly higher happiness. <strong>Hover any row</strong> to explore.</p>
+  <div id="chart-happiness"></div>
+</section>
+ 
+<div class="tooltip" id="tooltip"></div>
+ 
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <h2>Connection Is a Choice</h2>
+  <p class="lead">Friendships are among the strongest predictors of happiness, yet many of us invest less time in them as responsibilities grow.</p>
+  <p style="color:var(--dim);font-size:.95rem;margin-bottom:.9rem">Social scientists have found that frequent, positive interactions with friends stimulate dopamine and oxytocin — the brain's feel-good chemicals. Over time, this contributes to greater psychological and physical health.</p>
+  <p style="color:var(--dim);font-size:.95rem">The data is clear: people who make space for meaningful social time are consistently happier. Reclaiming even small moments of shared time can strengthen these bonds.</p>
+  <div class="sources">Sources: Kaggle · Our World In Data · Pew Research</div>
+</div>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
