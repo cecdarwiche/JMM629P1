@@ -97,14 +97,14 @@ h1.hero-title em{color:var(--red);font-style:italic}
 .sticky{
   position:sticky;top:0;height:100vh;width:52%;
   display:flex;align-items:center;justify-content:center;
-  padding:1.5rem;flex-shrink:0;background:var(--bg);
+  padding:1rem;flex-shrink:0;background:var(--bg);
 }
-.dunbar-wrap{width:100%;max-width:360px}
+.dunbar-wrap{width:100%;max-width:500px}
 .dunbar-wrap svg{width:100%;height:auto;display:block;overflow:visible}
  
 .steps{width:48%;padding:0 1.5rem 0 .5rem;display:flex;flex-direction:column}
-.steps::before,.steps::after{content:'';display:block;height:33vh}
-.step{min-height:40vh;display:flex;align-items:center;padding:.4rem 0}
+.steps::before,.steps::after{content:'';display:block;height:3vh}
+.step{min-height:35vh;display:flex;align-items:center;padding:.4rem 0}
 .card{
   background:var(--card);border:1px solid var(--brd);
   border-left:4px solid var(--red);
@@ -123,11 +123,11 @@ h1.hero-title em{color:var(--red);font-style:italic}
 .line-body{display:grid;grid-template-columns:1fr 230px;gap:2rem;align-items:start;margin-top:1.6rem}
 .line-left{min-width:0}
 #chart-line{display:block}
-#chart-line svg{width:100%;height:auto;display:block;max-width:480px}
+#chart-line svg{width:100%;height:auto;display:block;max-width:580px}
  
 .scrub-row{
   display:flex;align-items:center;gap:.7rem;
-  margin-top:.8rem;max-width:480px;
+  margin-top:.8rem;max-width:580px;
 }
 .scrub-row label{
   font-size:.68rem;font-weight:500;letter-spacing:.12em;
@@ -190,7 +190,7 @@ input[type=range]::-moz-range-thumb{
 .bar-callout strong{color:var(--ink)}
  
 /* ══ CHART 4 — WAFFLE ═══════════════════════════ */
-.waffle-section{border-top:1px solid var(--rule);padding:3.5rem 1.5rem;max-width:700px;margin:0 auto}
+.waffle-section{border-top:1px solid var(--rule);padding:3.5rem 1.5rem;max-width:600px;margin:0 auto}
 .waffle-body{display:flex;gap:2.5rem;align-items:flex-start;margin-top:1.6rem}
 #chart-importance{flex-shrink:0}
 .wleg{display:flex;flex-direction:column;gap:.65rem;padding-top:.15rem}
